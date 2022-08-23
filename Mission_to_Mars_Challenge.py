@@ -67,15 +67,15 @@ df.to_html()
 
 # 1. Use browser to visit the URL 
 url = 'https://marshemispheres.com/'
-
 browser.visit(url)
+
+# 2. Create a list to hold the images and titles.
+hemisphere_image_urls = []
 
 # Scrape page into Soup
 html = browser.html
 soup = soup(html, "html.parser")
 
-# 2. Create a list to hold the images and titles.
-hemisphere_image_urls = []
 # 3. Write code to retrieve the image urls and titles for each hemisphere.
 #look for all the links then
 moon_links = browser.find_by_css("a.product-item img")

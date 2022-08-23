@@ -20,7 +20,7 @@ def scrape_all():
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now(),
-        "moon_dictionary" : hemisphere_image_urls
+        "hemispheres": hemisphere_scrape(browser)
     }
 
     # Stop webdriver and return data
@@ -102,12 +102,13 @@ def hemisphere_scrape(browser):
     url = 'https://marshemispheres.com/'
     browser.visit(url)
 
+    # 2. Create a list to hold the images and titles.
+    hemisphere_image_urls = []
+
     # Scrape page into Soup
     html = browser.html
     soup = soup(html, "html.parser")
-
-    # 2. Create a list to hold the images and titles.
-    hemisphere_image_urls = []
+    
     # 3. Write code to retrieve the image urls and titles for each hemisphere.
     #look for all the links then
     moon_links = browser.find_by_css("a.product-item img")
@@ -115,6 +116,7 @@ def hemisphere_scrape(browser):
     for i in range (len(moon_links)):
         #create a dictionary to hold links and titles
         moon_dictionary = {}
+        #hemisphere
         #find links, click links, save links to dictionary
         browser.find_by_css("a.product-item img")[i].click()
         full_image = browser.find_by_text("Sample").first
@@ -126,7 +128,7 @@ def hemisphere_scrape(browser):
         hemisphere_image_urls.append(moon_dictionary)
         #go back to main url and repeate loop
         browser.back()
-        return(hemisphere_image_urls) 
+        return hemisphere_image_urls
 
 if __name__ == "__main__":
 
