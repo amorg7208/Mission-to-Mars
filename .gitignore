@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#duplicated original files
+scraping_original.py
+app_original.py
+index_original.html 
+
 # C extensions
 *.so
 
